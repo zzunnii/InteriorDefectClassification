@@ -2,11 +2,17 @@
 
 ## 프로젝트 개요
 
-이 프로젝트는 인테리어 결함을 자동으로 분류하기 위한 딥러닝 기반 시스템입니다. 여러 모델 아키텍처(ResNet34, EfficientNet B0, DenseNet121, ConvNext Base)를 활용하여 학습 및 평가를 수행하며, 데이터 불균형 문제를 해결하기 위해 소프트 레이블링, Mixup 증강, 클래스 가중치 조정 등의 기법을 사용합니다. 또한, AdaBoost 스타일의 부스팅 앙상블과 단순 평균 앙상블을 통해 예측 성능을 향상시켰습니다. Gradio를 사용한 인터랙티브 데모는 Out-of-Distribution (OOD) 감지 기능을 포함하여 실제 환경에서의 활용성을 높입니다. 학습 결과는 혼동 행렬, 학습 곡선, 클래스별 정확도 등 다양한 시각화 도구를 통해 분석됩니다.
+이 프로젝트는 호서대학교 딥러닝프레임워크 팀프로젝트 과제의 일환으로
+인테리어 결함을 자동으로 분류하기 위한 딥러닝 기반 시스템입니다. 
+여러 모델 아키텍처(ResNet34, EfficientNet B0, DenseNet121, ConvNext Base)를 활용하여 학습 및 평가를 수행하며, 데이터 불균형 문제를 해결하기 위해 소프트 레이블링, Mixup 증강, 클래스 가중치 조정 등의 기법을 사용합니다. 또한, AdaBoost 스타일의 부스팅 앙상블과 단순 평균 앙상블을 통해 예측 성능을 향상시켰습니다. Gradio를 사용한 인터랙티브 데모는 Out-of-Distribution (OOD) 감지 기능을 포함하여 실제 환경에서의 활용성을 높입니다. 학습 결과는 혼동 행렬, 학습 곡선, 클래스별 정확도 등 다양한 시각화 도구를 통해 분석됩니다.
 
 ## 데이터 출처
 
-이 프로젝트에서 사용된 데이터셋은 Dacon 인테리어 결함 분류 대회에서 제공됩니다. 데이터 다운로드는 위 링크를 통해 가능하며, 데이터에 대한 모든 라이선스와 저작권은 Dacon에 있습니다.
+이 프로젝트에서 사용된 데이터셋은 Dacon 인테리어 결함 분류 대회에서 제공됩니다. 
+
+데이터 다운로드는 아래 링크를 통해 가능하며, 데이터에 대한 모든 라이선스와 저작권은 Dacon에 있습니다.
+
+**Dacon: 도배 하자 유형 분류 데이터 : ** [다운로드](https://dacon.io/competitions/official/236082/data)
 
 ## 프로젝트 구조
 
@@ -41,7 +47,7 @@
 
 3. **데이터셋 준비**:
 
-   - Dacon 인테리어 결함 분류 대회에서 데이터를 다운로드하세요.
+   - 데이터 다운로드 [다운로드](https://dacon.io/competitions/official/236082/data)
 
    - 데이터를 `config.py`의 `DATA_DIR`에 지정된 경로에 저장하거나 아래 방법에 따라 실행하세요.
 
@@ -77,7 +83,12 @@ python ensemble.py --data-dir <데이터 경로> --optimize-weights
 - `--optimize-weights`: AdaBoost 스타일의 부스팅 가중치를 계산합니다.
 - 결과는 `results/ensemble` 디렉토리에 저장됩니다.
 
-### 3. Gradio 데모 실행
+
+### 데모 버전
+
+ConvNext로 사전학습된 모델을 다운 받으세요. [모델 다운로드](https://drive.google.com/file/d/14Zk1fsBc1oMiYUMuXGF6HNyZTVRDh6Jn/view)
+
+해당 모델을 `./project/results/convnext_base/`에 위치 시키세요.
 
 `gradio_demo.py`를 실행하여 인터랙티브 웹 인터페이스를 통해 모델 예측을 확인합니다:
 
@@ -113,11 +124,19 @@ python gradio_demo.py
 
 ## 참고 사항
 
-- 데이터 경로(`DATA_DIR`)는 `config.py`에서 적절히 설정해야 합니다.
 - Windows 환경에서는 `num_workers=0`으로 설정하여 데이터 로딩 문제를 방지할 수 있습니다.
 - OOD 감지 임계값(`CONFIDENCE_THRESHOLD`, `ENTROPY_THRESHOLD`)은 `gradio_demo.py`에서 조정 가능합니다.
-- 부스팅 앙상블은 AdaBoost 기반 가중치를 사용하여 모델별 예측을 결합합니다.
+
+## 프로젝트 기여자
+
+| 이름   | 소속                     |
+|--------|--------------------------|
+| 이성준 | 호서대학교 컴퓨터공학부 |
+| 이성범 | 호서대학교 컴퓨터공학부 |
+| 오승진 | 호서대학교 컴퓨터공학부 |
+| 이호성 | 호서대학교 컴퓨터공학부 |
+
 
 ## 문의
 
-추가 질문이나 문제가 있을 경우, Dacon 포럼 또는 프로젝트 관련 문의 채널을 통해 연락 바랍니다.
+[![Email](https://img.shields.io/badge/Email-tjdwns7488@gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:tjdwns7488@gmail.com)

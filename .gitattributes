@@ -2,3 +2,4 @@
 * text=auto
 results/convnext_base/best_model.pth filter=lfs diff=lfs merge=lfs -text
 results/convnext_base/results.json filter=lfs diff=lfs merge=lfs -text
+result/convnext_base/best_model.pth filter=lfs diff=lfs merge=lfs -text
